@@ -1,0 +1,132 @@
+MANUAL GITHUB INIT
+---------------------
+
+1. Preparación
+Antes de comenzar, asegúrate de tener Git instalado en tu máquina. Si no lo tienes, puedes descargarlo desde git-scm.com.
+ubuntu 24:  (sudo apt install git -y) 
+
+
+
+2. Inicializar el Repositorio Local
+Navega a tu proyecto:
+Abre una terminal o línea de comandos y navega a la carpeta de tu proyecto:
+
+cd /ruta/a/tu/proyecto
+Inicializa el repositorio:
+Si aún no has inicializado un repositorio Git en tu proyecto, hazlo con el siguiente comando:
+
+git init
+
+2a. establecer configuracione de identificacion 
+git config --global user.email "fabinnerself@gmail.com"
+
+3. Configurar el Repositorio Remoto
+Crea un nuevo repositorio en tu servicio Git:
+
+Ve a tu cuenta en GitHub, GitLab, Bitbucket, etc.
+Crea un nuevo repositorio y copia la URL del repositorio (por ejemplo, https://github.com/usuario/repositorio.git).
+Añade el repositorio remoto a tu proyecto:
+
+git remote add origin https://github.com/usuario/repositorio.git
+
+4. Añadir y Cometer Cambios
+Añadir archivos al área de preparación (staging area):
+Puedes añadir todos los archivos o seleccionar los específicos:
+
+git add .
+
+O, si deseas añadir archivos específicos:
+
+git add archivo1 archivo2
+
+Crear un commit con tus cambios:
+Escribe un mensaje de commit que describa claramente los cambios realizados:
+
+git commit -m "Mensaje descriptivo de los cambios"
+
+5. Subir los Cambios al Repositorio Remoto
+Subir (push) tus cambios al repositorio remoto:
+Si es la primera vez que subes cambios a este repositorio, usa el siguiente comando:
+
+git push -u origin master
+
+nota en linux se debe hacer los siguientes pasos:
+ir al sitio https://github.com/settings/tokens y generar un tocken : 
+Haz clic en "Generate new token".
+Selecciona los permisos necesarios para tu token. Para las operaciones básicas de Git, necesitarás repo.
+Copia el token generado (guárdalo en un lugar seguro, ya que solo se mostrará una vez).
+Configurar Git para Usar el Token de Acceso Personal:
+
+Al ejecutar git push, cuando se te pida la contraseña, ingresa el token en lugar de tu contraseña.
+
+Para evitar tener que ingresar el token cada vez, puedes usar el comando git remote set-url para incluir el token en la URL remota:
+git remote set-url origin https://<your-token>@github.com/fabinnerself/sisec.git
+
+ej: 
+git remote set-url origin https://ghp_yourTokenHere@github.com/fabinnerself/sisec.git
+Ahora, puedes intentar el git push de nuevo:
+
+git push -u origin master
+
+Para subidas futuras, simplemente usa:
+
+git push
+
+6. Mantener el Proyecto Actualizado
+Obtener (pull) cambios desde el repositorio remoto:
+Antes de empezar a trabajar cada día, asegúrate de tener la última versión del código:
+
+
+git pull origin master
+
+**********************************************************************************************
+Pasos Detallados en Diferentes Plataformas
+
+GitHub
+Crear un repositorio:
+
+Ve a GitHub.
+Inicia sesión y haz clic en el botón "New" para crear un nuevo repositorio.
+Completa los detalles del repositorio y haz clic en "Create repository".
+Obtener la URL del repositorio:
+
+Copia la URL HTTPS o SSH del repositorio recién creado.
+GitLab
+Crear un repositorio:
+
+Ve a GitLab.
+Inicia sesión y haz clic en el botón "New project".
+Completa los detalles del proyecto y haz clic en "Create project".
+Obtener la URL del repositorio:
+
+Copia la URL HTTPS o SSH del repositorio recién creado.
+Bitbucket
+Crear un repositorio:
+
+Ve a Bitbucket.
+Inicia sesión y haz clic en el botón "Create repository".
+Completa los detalles del repositorio y haz clic en "Create repository".
+Obtener la URL del repositorio:
+
+Copia la URL HTTPS o SSH del repositorio recién creado.
+Notas Adicionales
+Archivos .gitignore:
+Asegúrate de incluir un archivo .gitignore en tu proyecto para evitar subir archivos innecesarios. Puedes encontrar plantillas para diferentes tipos de proyectos en gitignore.io.
+
+Documentación y Buenas Prácticas:
+Mantén tu documentación actualizada y sigue buenas prácticas para escribir mensajes de commit y gestionar ramas.
+
+Siguiendo estos pasos, podrás subir tu proyecto a un repositorio Git y gestionar tus versiones de manera eficiente.
+
+
+**********************************************
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/fabinnerself/sisec.git
+git push -u origin master
+
+git remote add origin https://github.com/fabinnerself/sisec.git
+git branch -M master
+git push -u origin maste
