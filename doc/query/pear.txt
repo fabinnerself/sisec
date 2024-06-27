@@ -1,0 +1,4 @@
+pear install pear.php.net/Spreadsheet_Excel_Writer-0.9.3
+pear install --alldeps pear/Spreadsheet_Excel_Writer-0.9.3
+
+php go-pear.phar

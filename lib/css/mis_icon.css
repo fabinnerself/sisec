@@ -1,0 +1,52 @@
+.icon-download{
+	background:url('icons/download.png') no-repeat center center;
+}
+.icon-exit{
+	background:url('icons/exit_icon_16.png') no-repeat center center;
+}
+.icon-exceles{
+	background:url('icons/excel.png') no-repeat center center;
+}
+.icon-reporte{
+	background:url('icons/rep_icon_21.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('icons/reload.png') no-repeat center center;
+} 
+.icon-excel{
+	background:url('icons/excel.png') no-repeat center center;
+} 
+.icon-proy_reg{
+	background:url('icons/reg_proy_ico.png') no-repeat center center;
+} 
+.icon-proy_eval{
+	background:url('icons/eval_proy_ico.png') no-repeat center center;
+} 
+.icon-proy_aprob{
+	background:url('icons/aprob_proy_ico.png') no-repeat center center;
+} 
+.icon-proy_lac{
+	background:url('icons/lac_proy_ico.png') no-repeat center center;
+} 
+.icon-proy_cerrar{
+	background:url('icons/cerr_proy_ico.png') no-repeat center center;
+} 
+.icon-proy_vista{
+	background:url('icons/vista_proy_ico.png') no-repeat center center;
+} 
+.icon-proy_ejec{
+	background:url('icons/ejec_proy_ico.png') no-repeat center center;
+} 
+.icon-home{
+	background:url('icons/home.png') no-repeat center center;
+} 
+.icon-persona{
+	background:url('icons/persona.png') no-repeat center center;
+}
+.icon-usuario{
+	background:url('icons/usuario.png') no-repeat center center;
+}
+
+.icon-elim{
+	background:url('icons/delete1.png') no-repeat center center;
+}

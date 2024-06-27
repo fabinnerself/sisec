@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="seguimiento,proyectos,cierre">
+	<meta name="description" content="seguimiento proyectos">
+	<title>SISEC-Operaciones Persona</title>
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="../lib/css/mis_icon.css">
+	<link rel="stylesheet" type="text/css" href="../lib/css/mis_estilos.css"> 
+	<script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+	<link rel="icon" href="/favicon.png">
+
+	<script type="text/javascript">
+	var url;
+	
+	function fn_pry_buscar(){
+		$('#dg_persona_pric').datagrid('load',{
+			prs_nombres: $('#txt_nombre').val(),
+			prs_ci: $('#txt_ci').val(),
+
+		});
+	}	
+		
+	function fn_pry_limpiar(){
+		$('#txt_nombre').val('');
+		$('#txt_ci').val('');
+
+		
+		$('#dg_persona_pric').datagrid('load',{
+			prs_nombres: '', prs_ci: ''  
+		});
+	}
+	
+	function fn_salir(){
+		url = "../index.html"; 
+		$(location).attr('href',url);
+	}//func
+			
+			
+	function fn_persona_nuevo(){
+
+		$('#dlg_persona_princ').dialog('open').dialog('setTitle','Adicionar Persona');
+		$('#form_persona_princ').form('clear');
+		$('#hid_persona_operacion').val('ADD');	
+	
+	}
+	
+	 
+	
+	function fn_persona_dat_grabar(){ 
+		var row = $('#dg_persona_pric').datagrid('getSelected');
+		str_operacion=$('#hid_persona_operacion').val();
+		var url=""
+		
+		if (row && str_operacion=="MOD"){	
+			url='001_operaciones_persona.php?oper=persona_mod&id_persona='+row.persona_codigo;	
+		}
+		if ( str_operacion=="ADD"){ 
+			url='001_operaciones_persona.php?oper=persona_add';	
+		}
+ 
+		if(url!=""){
+			$('#form_persona_princ').form('submit',{
+				url: url,
+				onSubmit: function(param){
+					//console.log(param);
+					 return $(this).form('validate');			
+				},
+				success: function(result){
+					// console.log(result);					
+					var result = eval('('+result+')');
+		 
+					if (result.errorMsg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.errorMsg
+						});
+					} else {
+						$('#dlg_persona_princ').dialog('close');		// close the dialog
+						$('#dg_persona_pric').datagrid('reload');	// reload the user data
+					}					
+ 
+				}
+			});
+		}
+	}	
+	
+	function formatearFecha(fecha) {
+		var partes = fecha.split('/');
+		return partes[1] + '-' + partes[0] + '-' + partes[2]; // Suponiendo que la fecha viene en formato mm/dd/YYYY
+	}
+
+
+ 
+
+
+$.fn.datebox.defaults.formatter = function(date){
+	var y = date.getFullYear();
+	var m = date.getMonth()+1;
+	var d = date.getDate();
+
+	if (d < 10) {
+		d='0'+d;
+	}
+
+	if (m < 10) {
+		m='0'+m;
+	}	
+
+	//alert (d+'/'+m+'/'+y); 
+	//return d+'/'+m+'/'+y;
+	return m+'/'+d+'/'+y;
+}
+
+function fn_persona_editar(){
+	var row = $('#dg_persona_pric').datagrid('getSelected');
+	if (row){
+		$('#dlg_persona_princ').dialog('open').dialog('setTitle','Editar Datos Persona');
+		$('#form_persona_princ').form('clear');
+		$('#hid_persona_operacion').val('MOD'); 
+ 	
+		$('#form_persona_princ').form('load','001_operaciones_persona.php?oper=get_data_persona&id_persona='+row.persona_codigo);
+
+		/*
+		setTimeout(function(){
+			var auxFecha = $('#txt_aux_fecha').val();
+
+			// Formatear la fecha a dd-mm-YYYY
+			var fechaFormateada = formatearFecha(auxFecha);
+
+			// Asignar la fecha formateada al campo datebox
+			$('#dte_persona_fecha_nacimiento').datebox('setValue', fechaFormateada);
+
+			// Verificar la asignación
+			  fechaNacimiento = $('#dte_persona_fecha_nacimiento').datebox('getValue');
+			alert('Fecha de Nacimiento: ' + fechaNacimiento);
+			console.log('Fecha de Nacimiento: ' + fechaNacimiento);
+
+			}, 5000); // Ajustar el tiempo de espera según sea necesario
+			*/
+	  
+	}
+	else{
+		alert("Debe seleccionar una fila para editar")
+	}	
+}
+ 
+function fn_persona_remove(){
+	var row = $('#dg_persona_pric').datagrid('getSelected');
+	if (row){
+		$.messager.confirm('Confirmar','¿Esta seguro de eliminar los datas de esta persona?',function(r){
+			if (r){
+				$.post('001_operaciones_persona.php',{id:row.persona_codigo,oper:'persona_elim'},function(result){
+
+					if (result.msg){
+						$.messager.show({
+							title: 'Error',
+							msg: result.msg
+						});
+					} else {						
+						$('#dg_persona_pric').datagrid('reload');	// reload the user data
+					}					
+ 
+				},'json');
+			}
+		});
+	}
+}
+  
+ 
+
+</script>
+</head>
+<body>
+ 
+	<table id="dg_persona_pric" title="Listado de Personas" class="easyui-datagrid" style="width:850px;height:450px"
+			url="001_operaciones_persona.php?oper=persona_listado" rownumbers="true"
+			sortName="proyecto_descripcion" sortOrder="asc"  
+			toolbar="#toolbar_op_persona" pagination="true"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr>
+				<th field="persona_codigo"  width="5"  >Id</th>  <!-- hidden=true -->
+				<th field="nombres" width="50">Nombres</th>
+				<th field="ci" width="10">CI</th>
+				<th field="fecha_nacimiento" width="10">Fecha nacimiento</th>
+ 				 
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar_op_persona">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="fn_persona_nuevo()">Añadir</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="fn_persona_editar()">Editar</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-elim" plain="true" onclick="fn_persona_remove()">Eliminar</a>
+ 
+		<a href="#" class="easyui-linkbutton"  iconCls="icon-home" plain="true" onclick="fn_salir()" alt='Sale a Menu Principal'>Principal</a>
+		<br><span>Nombre:</span>
+		<input id="txt_nombre" style="line-height:20px;border:0.5px solid #ccc">
+		<span>CI:</span>
+		<input id="txt_ci" style="line-height:26px;border:1px solid #ccc">	
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="fn_pry_buscar()" alt='Buscar en  Listado Proyectos'>Buscar</a>
+		<a href="#" class="easyui-linkbutton"  iconCls="icon-undo" plain="true" onclick="fn_pry_limpiar()" alt='Limpia Listado Proyectos'>Limpiar</a>						
+	
+	</div>
+	<div id="dlg_persona_princ" class="easyui-dialog" style="width:520px;height:350px;padding:3px 10px"
+		closed="true" 	 buttons="#dlg-cierre_princ_buttons">	
+		<form id="form_persona_princ" method="post" novalidate >  
+			<input id=hid_persona_operacion  name= hid_persona_operacion readonly  type=hidden   >  
+			<div class="fitem">
+				<label>Primer Nombre:</label>
+	 			<input name="txt_persona_Primer_Nombre" class="easyui-validatebox" required="true" data-options="min:2 , missingMessage:'Este campo es Requerido' "  style="width:400px;" />
+			</div>
+			<div class="fitem">
+				<label>Segundo Nombre:</label>
+				<input name="txt_persona_Segundo_Nombre" class="easyui-validatebox"     style="width:400px;" />					
+			</div>
+			<div class="fitem">
+				<label>Paterno:</label>
+	 			<input name="txt_persona_Paterno" class="easyui-validatebox" required="true" data-options="min:2 ,missingMessage:'Este campo es Requerido' "  style="width:400px;" />
+			</div>
+			<div class="fitem">
+				<label>Materno:</label>
+				<input name="txt_persona_Materno" class="easyui-validatebox"     style="width:400px;" />	
+				
+			</div>			
+			<div class="fitem">
+				<label>Carnet Identidad:</label>
+				<input name="txt_persona_Carnet" class="easyui-validatebox"     style="width:400px;" />				
+			</div>	
+ 			<div class="fitem">
+				<label>Titulo:</label>
+				<select id="cbx_persona_titulo" class="easyui-combobox" name="cbx_persona_titulo" style="width:400px;">
+					<option value="Ing." >Ingeniero</option>
+					<option value="Lic">Licenciado</option>
+					<option value="Doc">Doctor</option>
+				</select>						
+			</div>		
+			<div class="fitem">
+				<label>Fecha de Nacimiento:</label>
+				<input id =dte_persona_fecha_nacimiento name=dte_persona_fecha_nacimiento class="easyui-datebox"  required="true" 				 
+				style="width:400px;" maxlength=10   >
+			</div>
+			<div class="fitem">
+				 
+				<input id =txt_aux_fecha name=txt_aux_fecha   type=hidden 				 
+				style="width:400px;" maxlength=10   >
+			</div>						
+	 	
+			<div id="dlg-buttons_cierre_dat_grabar">
+				<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="fn_persona_dat_grabar()">Grabar</a>
+			</div>				
+	 
+		</form><!-- form_persona_princ -->
+	</div><!-- dlg_persona_princ -->
+	
+<div id="dlg-cierre_princ_buttons">
+	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_persona_princ').dialog('close')">Salir</a>
+</div>		
+</body>
+</html>

@@ -1,0 +1,74 @@
+table {
+   font-family: Verdana  ; }
+
+   .titulo{
+   font-weight: bold;
+   background-color: #DBE5F1;
+   }
+   
+ .tit_secion {
+ 	font-weight: bold;
+ 	line-height:  normal;
+	font-size:12.0pt;
+	background-color:#95B3D7;
+ }
+   .tit_secion_lista {
+ 	font-weight: bold;
+ 	line-height:  normal;
+	font-size:12.0pt;
+	background-color:#548DD4;
+ }
+ .tit_det {
+	font-weight: bold;
+	color:#365F91;
+	background-color:#8DB3E2;
+	valign:top;
+	font-size:9.0pt;
+	text-align:center
+}
+
+.odd {
+	background-color: #def; 
+	font-size:70%;
+	
+}
+.even {
+   	font-size:70%;
+ }
+ .fila_blanco{
+ 	line-height:40% ;
+ }
+ .titulo_reporte {
+ 	font-size:150%;
+	font-weight: bold;
+	text-align:center
+ }
+ 
+ .ui-progressbar .ui-progressbar-value {
+    height: 100%;
+    margin: -1px;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 4px;
+}
+
+	#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			color:#666;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}

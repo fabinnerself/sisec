@@ -1,0 +1,73 @@
+body {
+   background-color: #eee;
+   font: 62.5%/1.3 Verdana, Arial, Helvetica, sans-serif; }
+#wrap {
+   font-size: 130%;
+   width: 550px;
+   padding: 10px 50px;
+   margin: 0 auto; 
+   border: 1px solid #ccc;
+   background-color: #fff;}
+
+/* Table Styles */
+table {
+   width: 100%;
+   border: 1px solid #cef;
+   margin: 1em 25px;
+   text-align: left; }
+th {
+   font-weight: bold;
+   background-color: #acf;
+   border-bottom: 1px solid #cef; }
+td,th {
+   padding: 4px 5px; }
+
+.odd {
+	background-color: #def; 
+	font-size:7.0pt;
+	
+}
+   
+.even {
+   	font-size:7.0pt;
+ }
+      
+.odd td {
+   border-bottom: 1px solid #cef; }   
+
+.titulo{
+   font-weight: bold;
+   background-color: #acf;
+   }
+   
+ .titulo_dato{
+   font-weight: bold;
+   border: 1px solid #cef;
+   #border-style:solid   #cef;
+   #border-width:1px;
+  }
+
+.tit_det {
+	font-weight: bold;
+	color:#365F91;
+	background-color:#8DB3E2;
+	valign:top;
+	font-size:9.0pt;
+	text-align:center
+}
+ .tit_secion {
+ 	font-weight: bold;
+ 	line-height:  normal;
+	font-size:12.0pt;
+	background-color:#8DB3E2;
+ }
+ 
+  .tit_secion_lista {
+ 	font-weight: bold;
+ 	line-height:  normal;
+	font-size:12.0pt;
+	background-color:#548DD4;
+ }
+ .alinea_top{
+ 	vertical-align:top;
+ }

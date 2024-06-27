@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>SISEC: Sistema de Seguimeinto Proyectos </title>
+	<link rel="stylesheet" type="text/css" href="lib/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="lib/js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="lib/js/easyui/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="lib/css/mis_icon.css">
+	<script type="text/javascript" src="lib/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="lib/js/easyui/jquery.easyui.min.js"></script>
+	<link rel="icon" href="/favicon.png">
+ 
+</head>
+ 
+<script type="text/javascript">
+	//$('#mm4').panel('close');
+	
+ 
+	
+	function menuHandler(item){
+		//alert(item.name);
+		
+		var url = "";    
+		switch(item.name){
+			case 'buscador_proyecto':
+				url = "modulo/01_buscador_proyecto.html"; 
+				$(location).attr('href',url);
+			break;
+			case 'registro_proyecto':
+				url = "modulo/01_buscador_proyecto.html"; 
+				$(location).attr('href',url);
+			break;		
+			case 'evaluacion_proyecto':
+				url = "modulo/02_proyecto_evaluacion.html"; 
+				$(location).attr('href',url);
+			break;	
+			case 'aprobacion_proyecto':
+				url = "modulo/03_aprobacion.html"; 
+				$(location).attr('href',url);
+			break;		
+			case 'cierre_proyecto':
+				url = "modulo/07_cierre.html"; 
+				$(location).attr('href',url);
+			break;				
+			case 'vista_campo_proyecto':
+				url = "modulo/06_vista_campo.html"; 
+				$(location).attr('href',url);
+			break;				
+			case 'ejecucion_proyecto':
+				url = "modulo/05_ejecucion.html"; 
+				$(location).attr('href',url);
+			break;				
+			case 'lac_proyecto':
+				url = "modulo/04_lic_adj_contr.html"; 
+				$(location).attr('href',url);
+			break;	
+			case 'lac_proyecto_pre':
+				url = "modulo/04_lic_adj_contr_pre.html"; 
+				$(location).attr('href',url);
+			break;				
+
+			
+			case 'operaciones_persona':
+				url = "modulo/001_persona.html"; 
+				$(location).attr('href',url);
+			break;		
+			case 'operaciones_usuario':
+				url = "modulo/002_usuario.html"; 
+				$(location).attr('href',url);
+			break;		
+			case 'indicadores':
+				url = "modulo/08_indicador.html"; 
+				$(location).attr('href',url);
+			break;				
+			case 'salir':
+				url = "index.php"; 
+				$(location).attr('href',url);
+			break;				
+			case 'ee_pp':
+ 
+				$.cookie('fileDownload', null);
+				 
+				$.fileDownload('modulo/0311_buscador_procesos.php?operacion=reporte_procesos_pp', {
+						preparingMessageHtml: "Se esta preparando el reporte, por favor esperar...",
+						failMessageHtml: "Hubo un problema al generar el reporte, por favor intentar de nuevo.",
+						httpMethod: "POST" /*,
+						data: operacion:reporte_procesos*/
+				});
+					
+				return false;				
+			break;		
+			case 'bp_crud':
+				url = "modulo/01_buscador_proyecto_crud.html"; 
+				$(location).attr('href',url);		 			
+				break;				
+				
+			case 'r_ee':
+ 
+				$.cookie('fileDownload', null);
+				 
+				$.fileDownload('modulo/0311_buscador_procesos.php?operacion=reporte_pp_resumen_empleadores', {
+						preparingMessageHtml: "Se esta preparando el reporte, por favor esperar...",
+						failMessageHtml: "Hubo un problema al generar el reporte, por favor intentar de nuevo.",
+						httpMethod: "POST"  
+				});
+					
+				return false;				
+			break;		
+			case 'rr_pcs':
+ 
+				$.cookie('fileDownload', null);
+				 
+				$.fileDownload('modulo/0311_buscador_procesos.php?operacion=reporte_pcs_resumen', {
+						preparingMessageHtml: "Se esta preparando el reporte, por favor esperar...",
+						failMessageHtml: "Hubo un problema al generar el reporte, por favor intentar de nuevo.",
+						httpMethod: "POST"  
+				});
+					
+				return false;				
+			break;	
+			case 'r_e_pcs':
+ 
+				$.cookie('fileDownload', null);
+				 
+				$.fileDownload('modulo/0311_buscador_procesos.php?operacion=reporte_pcs_resumen_empleadores', {
+						preparingMessageHtml: "Se esta preparando el reporte, por favor esperar...",
+						failMessageHtml: "Hubo un problema al generar el reporte, por favor intentar de nuevo.",
+						httpMethod: "POST"  
+				});
+					
+				return false;				
+			break;	
+		case 'be_pes':
+				url = "modulo/0213_bus_pes.html"; 
+				$(location).attr('href',url);
+			break;			
+		}//fin sw
+		 
+	} 	
+	function fn_limpia(){
+		$('#mm4').window('close');
+	}
+	
+	function fn_reg_proyecto(){
+		url = "01_buscador_proyecto.html"; 
+		$(location).attr('href',url);			
+	}	
+	
+	
+ </script>
+<body onload=fn_limpia()>
+	<div style="padding:5px;border:1px solid #ddd">
+		<a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-download'">Ajustes</a>
+		<a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-search', onClick:menuHandler " id="btn-search" >Proyectos</a>
+		<a href="#" class="easyui-menubutton" data-options="menu:'#mm3',iconCls:'icon-help'">Ayuda</a>
+	</div>
+	<div id="mm1" style="width:150px;" data-options="onClick:menuHandler">
+		<div data-options="name:'operaciones_persona' , iconCls:'icon-persona'">Persona</div>
+		<div data-options="name:'operaciones_usuario' ,iconCls:'icon-usuario'">Usuarios</div>
+		<div data-options="name:'salir' ,iconCls:'icon-exit'">Salir</div>
+ 
+ 	</div>
+	
+	<div id="mm2" class="easyui-menu" style="width:120px;" data-options="onClick:menuHandler">  
+		  
+			  
+		<div data-options="name:'registro_proyecto' , iconCls:'icon-proy_reg'"> Registro Proyecto  </div>  
+		<div data-options="name:'evaluacion_proyecto', iconCls:'icon-proy_eval'"> Evaluacion Proyecto  </div>  
+		<div data-options="name:'aprobacion_proyecto' , iconCls:'icon-proy_aprob'"> Aprobacion Proyecto  </div> 
+		<div data-options="name:'lac_proyecto_pre' , iconCls:'icon-proy_lac'"> Licitacion Adjudicacion Contratacion Inversion Pre-Inversion</div> 
+		<div data-options="name:'lac_proyecto' , iconCls:'icon-proy_lac'"> Licitacion Adjudicacion Contratacion Inversion</div> 
+		<div data-options="name:'ejecucion_proyecto' , iconCls:'icon-proy_ejec'"> Ejecucion</div> 
+		<div data-options="name:'vista_campo_proyecto', iconCls:'icon-proy_vista'"> Vista Campo </div> 
+		<div data-options="name:'cierre_proyecto' , iconCls:'icon-proy_cerrar'"> Cierre Proyecto  </div>  
+		<div data-options="name:'indicadores' , iconCls:'icon-proy_cerrar'"> Indicadores  </div>  
+	  
+	</div> 
+	
+	<div id="mm3" style="width:100px;">
+		<div data-options="iconCls:'icon-help'">Ayuda</div>
+		 <div  onclick="javascript:$('#mm4').window('open')" >Acerca de ...</div> 
+		<!-- <div class="easyui-menu" data-options="menu:'#mm4' ">Acerca de ...</div> -->
+		<!-- <a href="#" class="easyui-menubutton" data-options="plain:true, menu:'#mm4'">Acerca de ...</a> -->
+	</div>
+ 
+<table  width: 100%    cellpadding="2" cellspacing="2" align=center>
+  <tbody>
+    <tr>
+      <td><img style="width: 300px; height: 300px;" alt="aa"
+ src="lib/img/fps.jpg"></td>
+    </tr>
+  </tbody>
+</table>
+
+ 
+
+  
+		
+<div id="mm4" class="easyui-window" data-options="maximizable:false,minimizable:false,collapsible:false,modal:true" 
+title="Acerca de..."  style="width:290px;background:#f0f0f0;padding:10px;text-align:left   "  >  
+<p style="font-size:7px;color:#444 ">
+	<div><H4><b>SISEC - Sistema de Seguimiento a Proyectos </b></H4></div>
+	<div>(c) 2024 Favian Medina</div>
+</p>  
+</div>  		
+
+
+</body>
+</html>

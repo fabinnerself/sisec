@@ -1,0 +1,20 @@
+manual sudo usuario
+**********************************
+
+ingresar como root
+actualizar apt update / apt upgrade
+
+mejor si se tiene instalado mc
+
+editar /etc/sudoers
+
+añadir al final del archivo [user] ALL=(ALL:ALL) ALL
+
+donde user es el usuario ej:
+
+favian ALL=(ALL:ALL) ALL
+
+
+
+
+

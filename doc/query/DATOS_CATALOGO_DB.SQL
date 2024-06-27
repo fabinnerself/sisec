@@ -1,0 +1,3 @@
+ SELECT *
+FROM   information_schema.tables
+ WHERE TABLE_TYPE IN ('BASE TABLE','VIEW') AND TABLE_SCHEMA='SISEC'

@@ -1,0 +1,26 @@
+manual instalalcion apache/php/mysql LAMP stack
+***********************************************
+
+fuente: https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu
+
+sudo apt install apache2 -y
+
+sudo ufw app list
+
+sudo ufw allow in "Apache"
+
+sudo apt install mysql-server -y 
+
+sudo mysql 
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345678';
+
+sudo mysql_secure_installation
+
+
+sudo apt install php libapache2-mod-php php-mysql -y
+
+sudo nano /etc/apache2/mods-enabled/dir.conf
+
+
+
